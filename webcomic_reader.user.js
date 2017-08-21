@@ -3196,10 +3196,10 @@ var paginas = [
 	},
 	{	url:	'kissmanga.com',
 		img:	function(html, pos){
-					var imgs = html.match(/lstImages\.push\(".+?"\);/g);
+					var imgs = html.match(/lstImages\.push\(wrapKA\(".+?"\)\);/g);
 					var num = pos ? Number(link[pos].match(/##(\d+);/)[1]) : 0;
 
-					return imgs[pos-num].match(/"(.+)"/)[1];
+					return wrapKA(imgs[pos-num].match(/"(.+)"/)[1]);
 				},
 		back:	function(html, pos){
 					throw 'fail';
@@ -3207,7 +3207,7 @@ var paginas = [
 		next:	function(html, pos){
 					if(!pos) return '##0;1';
 
-					var imgs = html.match(/lstImages\.push\(".+?"\);/g);
+					var imgs = html.match(/lstImages\.push\(wrapKA\(".+?"\)\);/g);
 					var num = Number(link[pos].match(/##(\d+);/)[1]);
 
 					if(num+imgs.length > pos+1) return '##' + num + ';' + (pos+1);
